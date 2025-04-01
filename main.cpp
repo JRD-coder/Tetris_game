@@ -201,7 +201,7 @@ void draw() {
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
                 if(a[i][j]=='#') cout<<a[i][j];
-            else if(a[i][j]=='O'||a[i][j]=='L')cout << "\033[31m"<<'O'<<"\033[0m";
+            else if(a[i][j]=='O'||a[i][j]=='L')cout << "\033[36m"<<'O'<<"\033[0m"; // Change color to sky blue
                 else cout<<a[i][j];
         }
         cout << endl;
@@ -274,7 +274,7 @@ void input(tetro_block &t) {
                     t.hard_drop();
                     break;
                 case 'q': // Quit
-                    cout << "HOPE U ENJOYED THE GAME (*_*)"<<endl;
+                    cout << "HOPE U ENJOYED THE GAME (_)"<<endl;
                                     cout << "  #####    ###    ##     ## ########     #######  ##     ## ######## ########  \n";
                 cout << " ##   ##  ## ##   ###   ### ##          ##     ## ##     ## ##       ##     ## \n";
                 cout << "##       ##   ##  #### #### ##          ##     ## ##     ## ##       ##     ## \n";
@@ -350,6 +350,8 @@ bool canMove(tetro_block &t, int dx)
 
 int main()
 {
+    system("cls"); // Clear the terminal
+    system("color 3"); // Change color to sky blue
     char blocks[] = {'l', 'o', 't', 'j', 's', 'z', 'i'};
     char p = blocks[rand() % 7]; // Randomly pick a tetromino
     char nextBlock = blocks[rand() % 7];  // Store next block type
@@ -395,7 +397,7 @@ int main()
             }
         }
         g.checkLines();
-            // Replace `char randomBlock = blocks[rand() % 7];`
+            // Replace char randomBlock = blocks[rand() % 7];
         char randomBlock = nextBlock;  // Use stored next block
 nextBlock = blocks[rand() % 7]; // Generate a new next block
 tetro_block q(randomBlock);
@@ -405,8 +407,10 @@ l = q;
             char c;
             cin>>c;
             if(c=='y'){
+                system("cls"); // Clear the terminal
+                system("color 3"); // Change color to sky blue
                 g.setup();
-                // Replace `char randomBlock = blocks[rand() % 7];`
+                // Replace char randomBlock = blocks[rand() % 7];
 char randomBlock = nextBlock;  // Use stored next block
 nextBlock = blocks[rand() % 7]; // Generate a new next block
 tetro_block q(randomBlock);
@@ -418,10 +422,10 @@ l = q;
             }
         }
         g.input(l);
-        Sleep(55); // Pause for 100 milliseconds
+        Sleep(70); // Pause for 100 milliseconds
         //system("cls");
     }
-    cout << "HOPE U ENJOYED THE GAME (*_*)"<<endl<<endl;
+    cout << "HOPE U ENJOYED THE GAME (_)"<<endl<<endl;
                 cout << "  #####    ###    ##     ## ########     #######  ##     ## ######## ########  \n";
                 cout << " ##   ##  ## ##   ###   ### ##          ##     ## ##     ## ##       ##     ## \n";
                 cout << "##       ##   ##  #### #### ##          ##     ## ##     ## ##       ##     ## \n";
