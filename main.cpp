@@ -91,11 +91,6 @@ public:
     }
 }
 
-    /*tetro_block(const tetro_block& other) {
-        shape = other.shape;  // Copy vector
-        positiony = other.positiony;
-        positionx = other.positionx;
-    }*/
     tetro_block& operator=(const tetro_block& other) {
         if (this != &other) {  // Prevent self-assignment
             shape = other.shape;  // Copy vector
