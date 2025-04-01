@@ -63,8 +63,8 @@ This project is a **Tetris Game** implemented in **C++**, utilizing various **ob
 4. Clear lines and score points!
 
 Before rotate:-![Image](https://github.com/user-attachments/assets/08a82e0f-4ade-433e-a46a-d912d0aa0b9f)
-After Rotate:-
- Game Over : ![Image](https://github.com/user-attachments/assets/e69e00e7-3928-4eaf-9356-922ccdf7cea1)**
+After Rotate:-![Image](https://github.com/user-attachments/assets/bae9671b-95fe-4ad3-9d52-2ae90ef92f89)
+Game Over : ![Image](https://github.com/user-attachments/assets/e69e00e7-3928-4eaf-9356-922ccdf7cea1)**
 
 ## **Conclusion**
 This Tetris implementation demonstrates the use of **OOP principles**, **vector-based data structures**, and **efficient console rendering techniques** to create an engaging game. The **dynamic tetromino handling** and **real-time input processing** make for smooth gameplay.
