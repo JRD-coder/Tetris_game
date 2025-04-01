@@ -1,7 +1,10 @@
 # Furious 4
 
 # Tetris Game - OOPS
-
+- Mohammadjunaid S. Kureshi - 202401102
+- Rishi Joshi - 202401077
+- Odedara Bharat - 202401131
+- Kirtan Chaudhari - 202401095
 ## Introduction
 This project is a **Tetris Game** implemented in **C++**, utilizing various **object-oriented programming (OOP) principles** and **data structures** such as **2D arrays** and **vectors**. The game runs in a **console window** and allows the player to control falling tetrominoes, rotate them, and clear lines to score points.
 
