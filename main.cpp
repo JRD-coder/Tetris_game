@@ -3,7 +3,7 @@
 #include <stdlib.h>// used for using rand() function
 #include <windows.h>// used for hinding the cursor and sleep,system functions
 #include<vector>
-//#include<cstlib>
+
 
 using namespace std;
 const int height =30,width=20;
