@@ -61,6 +61,7 @@ This project is a **Tetris Game** implemented in **C++**, utilizing various **ob
 2. Run the executable.
 3. Control the tetrominoes using the keys listed above.
 4. Clear lines and score points!
+Before rotate:-![Image](https://github.com/user-attachments/assets/08a82e0f-4ade-433e-a46a-d912d0aa0b9f)
  Game Over : ![Image](https://github.com/user-attachments/assets/e69e00e7-3928-4eaf-9356-922ccdf7cea1)**
 
 ## **Conclusion**
