@@ -201,7 +201,7 @@ void draw() {
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
                 if(a[i][j]=='#') cout<<a[i][j];
-            else if(a[i][j]=='O'||a[i][j]=='L')cout << "\033[31m"<<'o'<<"\033[0m";
+            else if(a[i][j]=='O'||a[i][j]=='L')cout << "\033[31m"<<'O'<<"\033[0m";
                 else cout<<a[i][j];
         }
         cout << endl;
@@ -219,7 +219,7 @@ void showNextBlock(char next) {
     cout << "\nNext Block:\n";
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            cout << (preview[i][j] ? 'o' : ' ');
+            cout << (preview[i][j] ? 'O' : ' ');
         }
         cout << endl;
     }
@@ -401,7 +401,7 @@ nextBlock = blocks[rand() % 7]; // Generate a new next block
 tetro_block q(randomBlock);
 l = q;
             if(!l.block_check()){
-                    cout<<"You lost do you want to try again <y/n>:";
+                    cout<<"YOU LOST!!  DO U WANT TO TRY AGAIN <y/n>:";
             char c;
             cin>>c;
             if(c=='y'){
