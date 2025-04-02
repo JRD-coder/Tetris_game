@@ -207,7 +207,7 @@ void draw() {
         cout << endl;
     }
     cout<<endl;
-    cout<<"your score is - "<<score<<endl;
+    cout<<"YOUR SCORE IS - "<<score<<endl;
 }
 void showNextBlock(char next) {
     vector<vector<int>> preview(4, vector<int>(4, 0));
