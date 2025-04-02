@@ -32,8 +32,7 @@ public:
     else if (c == 'o') // O-Block (Square)
     {
         shape =
-        {
-            {0, 0, 0, 0},
+        {   {0, 0, 0, 0},
             {0, 1, 1, 0},
             {0, 1, 1, 0},
             {0, 0, 0, 0}
@@ -77,6 +76,7 @@ public:
             {1, 1, 0, 0},
             {0, 1, 1, 0},
             {0, 0, 0, 0}
+
         };
     }
     else if (c == 'i') // I-Block
@@ -91,14 +91,14 @@ public:
     }
 }
 
-    tetro_block& operator=(const tetro_block& other) {
-        if (this != &other) {  // Prevent self-assignment
-            shape = other.shape;  // Copy vector
-            positiony = other.positiony;
-            positionx = other.positionx;
-        }
-        return *this;
-    }
+    // tetro_block& operator=(const tetro_block& other) {
+    //     if (this != &other) {  // Prevent self-assignment
+    //         shape = other.shape;  // Copy vector
+    //         positiony = other.positiony;
+    //         positionx = other.positionx;
+    //     }
+    //     return *this;
+    // }
     void hard_drop() {
     while (block_check()) {
         positiony++;  // Keep moving down until collision
@@ -107,19 +107,19 @@ public:
 }
 
     void rotate() {
-    vector<vector<int>> newShape(4, vector<int>(4, 0));
+    vector<vector<int>> newShape(shape.size(), vector<int>(shape[0].size(), 0));
 
     // Rotate by 90 degrees (transpose + reverse rows)
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < shape.size(); i++) {
+        for (int j = 0; j < shape[0].size(); j++) {
                 //newShape[3 - j][i] = shape[i][j];
-           newShape[j][3 - i] = shape[i][j];
+           newShape[j][shape[0].size() - 1 - i] = shape[i][j];
         }
     }
 
     // Check if new shape fits within bounds and doesn't collide
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < shape.size(); i++) {
+        for (int j = 0; j < shape[0].size(); j++) {
             if (newShape[i][j] == 1) {
                 int y = positiony + i;
                 int x = positionx + j;
@@ -138,8 +138,8 @@ public:
         bool block_check() {
     int new_positiony = positiony+1;  // Move one step down
 
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < shape.size(); i++) {
+        for (int j = 0; j < shape[0].size(); j++) {
             if (shape[i][j] == 1) {  // If there's a block
                 int y = new_positiony + i;
                 int x = positionx + j;
@@ -177,8 +177,8 @@ public:
     }
     void drawtermino(tetro_block &t)
     {
-                for (int i = 0; i < 4; i++) {        // Loop through tetromino shape
-            for (int j = 0; j < 4; j++) {
+                for (int i = 0; i < t.shape.size(); i++) {        // Loop through tetromino shape
+            for (int j = 0; j < t.shape[0].size(); j++) {
                 if (t.shape[i][j] == 1) {    // If there's a block
                     int y = t.positiony + i;
                     int x = t.positionx + j;
@@ -210,19 +210,20 @@ void draw() {
     cout<<"YOUR SCORE IS - "<<score<<endl;
 }
 void showNextBlock(char next) {
-    vector<vector<int>> preview(4, vector<int>(4, 0));
-
+    
     // Get shape of next block
     tetro_block temp(next);
+    vector<vector<int>> preview(temp.shape.size(), vector<int>(temp.shape[0].size(), 0));
     preview = temp.shape;
 
     cout << "\nNext Block:\n";
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < preview.size(); i++) {
+        for (int j = 0; j < preview[0].size(); j++) {
             cout << (preview[i][j] ? 'O' : ' ');
         }
         cout << endl;
     }
+ //   system("cls");
 }
 
 
@@ -285,9 +286,11 @@ void input(tetro_block &t) {
                     exit(0);
                     break;
                 case 'r':
-
+    
     gameover = false;
     gameboard g;
+    // t.positionx = 10;
+    // t.positiony=0;
     g.setup();
     g.draw();
         break;
@@ -301,8 +304,8 @@ void input(tetro_block &t) {
 // Helper Function: Check if block can move left (-1) or right (+1)
 bool canMove(tetro_block &t, int dx)
 {
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < t.shape.size(); i++) {
+        for (int j = 0; j < t.shape[0].size(); j++) {
             if (t.shape[i][j] == 1) {  // If there's a block in the shape
                 int newX = t.positionx + j + dx; // New X position
                 int y = t.positiony + i;
@@ -347,6 +350,13 @@ bool canMove(tetro_block &t, int dx)
         score+=100;
     }
 };
+void hideCursor() {
+    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(consoleHandle, &cursorInfo);
+    cursorInfo.bVisible = false; // Hide cursor
+    SetConsoleCursorInfo(consoleHandle, &cursorInfo);
+}
 
 int main()
 {
@@ -366,8 +376,8 @@ int main()
         g.showNextBlock(nextBlock);
         g.hideCursor();
         if(l.block_check()){
-            for (int i = 0; i < 4; i++) {        // Loop through tetromino shape
-            for (int j = 0; j < 4; j++) {
+            for (int i = 0; i < l.shape.size(); i++) {        // Loop through tetromino shape
+            for (int j = 0; j < l.shape[0].size(); j++) {
                 if (l.shape[i][j] == 1) {    // If there's a block
                     int y = l.positiony + i;
                     int x = l.positionx + j;
@@ -383,8 +393,8 @@ int main()
         }
         else
         {
-            for (int i = 0; i < 4; i++) {        // Loop through tetromino shape
-            for (int j = 0; j < 4; j++) {
+            for (int i = 0; i < l.shape.size(); i++) {        // Loop through tetromino shape
+            for (int j = 0; j < l.shape[0].size(); j++) {
                 if (l.shape[i][j] == 1) {    // If there's a block
                     int y = l.positiony + i;
                     int x = l.positionx + j;
@@ -423,7 +433,8 @@ l = q;
         }
         g.input(l);
         Sleep(70); // Pause for 100 milliseconds
-        //system("cls");
+        hideCursor();
+       // system("cls");
     }
     cout << "HOPE U ENJOYED THE GAME (_)"<<endl<<endl;
                 cout << "  #####    ###    ##     ## ########     #######  ##     ## ######## ########  \n";
